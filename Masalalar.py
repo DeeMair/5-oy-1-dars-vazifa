@@ -289,3 +289,47 @@
 
 """8.MAsala"""
 
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QMainWindow, QPushButton
+
+app = QApplication([])
+
+# class MyWindow(QMainWindow):
+#     def __init__(self):
+#         super().__init__()
+#
+#         self.label = QLabel("********")
+#
+#         btn1 = QPushButton("Kitob")
+#         btn1.clicked.connect(self.get_book)
+#
+#         btn2 = QPushButton("Qo'shiq")
+#         btn2.clicked.connect(self.get_song)
+#
+#         btn3 = QPushButton("Sport")
+#         btn3.clicked.connect(self.get_sport)
+#
+#         vertical = QVBoxLayout()
+#         vertical.addWidget(self.label)
+#         vertical.addWidget(btn1)
+#         vertical.addWidget(btn2)
+#         vertical.addWidget(btn3)
+#
+#         window = QWidget()
+#         window.setLayout(vertical)
+#         self.setCentralWidget(window)
+#         self.setWindowTitle("MyWindow")
+#
+#     def get_book(self):
+#         self.label.setText("Alchemist")
+#
+#     def get_song(self):
+#         self.label.setText("Bohemian Rhapsody")
+#
+#     def get_sport(self):
+#         self.label.setText("Shaxmat")
+#
+# window = MyWindow()
+# window.show()
+# app.exec_()
+
+
