@@ -289,9 +289,9 @@
 
 """8.MAsala"""
 
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QMainWindow, QPushButton
-
-app = QApplication([])
+# from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QMainWindow, QPushButton
+#
+# app = QApplication([])
 
 # class MyWindow(QMainWindow):
 #     def __init__(self):
@@ -332,4 +332,140 @@ app = QApplication([])
 # window.show()
 # app.exec_()
 
+"""9.masala"""
+
+# import sys
+# from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit, QLabel, QPushButton
+#
+# class MyWindow(QWidget):
+#     def __init__(self):
+#         super().__init__()
+#
+#         self.line_edit = QLineEdit(self)
+#         self.label = QLabel('Natija:', self)
+#
+#         self.button_length = QPushButton('Matn uzunligi', self)
+#         self.button_upper = QPushButton('Katta harflar', self)
+#         self.button_lower = QPushButton('Kichik harflar', self)
+#         self.button_reverse = QPushButton('Orqaga ogirish', self)
+#         self.button_remove_spaces = QPushButton('Bosh joylarni olib tashlash', self)
+#         self.button_modify = QPushButton('Matnni ozgartirish', self)
+#
+#         self.button_length.clicked.connect(self.show_length)
+#         self.button_upper.clicked.connect(self.convert_to_upper)
+#         self.button_lower.clicked.connect(self.convert_to_lower)
+#         self.button_reverse.clicked.connect(self.reverse_text)
+#         self.button_remove_spaces.clicked.connect(self.remove_spaces)
+#         self.button_modify.clicked.connect(self.modify_text)
+#
+#         layout = QVBoxLayout()
+#         layout.addWidget(self.line_edit)
+#         layout.addWidget(self.label)
+#         layout.addWidget(self.button_length)
+#         layout.addWidget(self.button_upper)
+#         layout.addWidget(self.button_lower)
+#         layout.addWidget(self.button_reverse)
+#         layout.addWidget(self.button_remove_spaces)
+#         layout.addWidget(self.button_modify)
+#
+#         self.setLayout(layout)
+#
+#     def show_length(self):
+#         text = self.line_edit.text()
+#         self.label.setText(f'Matn uzunligi: {len(text)}')
+#
+#     def convert_to_upper(self):
+#         text = self.line_edit.text()
+#         self.label.setText(f'Katta harflar: {text.upper()}')
+#
+#     def convert_to_lower(self):
+#         text = self.line_edit.text()
+#         self.label.setText(f'Kichik harflar: {text.lower()}')
+#
+#     def reverse_text(self):
+#         text = self.line_edit.text()
+#         self.label.setText(f'Orqaga ogirilgan matn: {text[::-1]}')
+#
+#     def remove_spaces(self):
+#         text = self.line_edit.text()
+#         self.label.setText(f'Bosh joylarsiz matn: {text.replace(" ", "")}')
+#
+#     def modify_text(self):
+#         self.label.setText('Matn ozgartirildi!')
+#
+# app = QApplication(sys.argv)
+# window = MyWindow()
+# window.show()
+# sys.exit(app.exec_())
+
+
+"""10.Masala""" """Manashu 9 va 10 da GPT dan yorda so'radim sababi o'zim chiqarishni bilmadim tog'ri ishlame qoldi"""
+
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit, QLabel, QPushButton
+from PyQt5.QtCore import QDate
+
+class SanaIlovasi(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.kiritish = QLineEdit(self)
+        self.natija = QLabel('Natija:', self)
+
+        self.kun_btn = QPushButton('Sana kuni', self)
+        self.qush_10_kun_btn = QPushButton('10 kun keyin', self)
+        self.qush_oy_btn = QPushButton('1 oy keyin', self)
+        self.qush_yil_btn = QPushButton('1 yil keyin', self)
+        self.ayir_2_kun_btn = QPushButton('2 kun oldin', self)
+        self.ayir_oy_btn = QPushButton('1 oy oldin', self)
+
+        self.kun_btn.clicked.connect(self.sana_kuni)
+        self.qush_10_kun_btn.clicked.connect(self.qush_10_kun)
+        self.qush_oy_btn.clicked.connect(self.qush_oy)
+        self.qush_yil_btn.clicked.connect(self.qush_yil)
+        self.ayir_2_kun_btn.clicked.connect(self.ayir_2_kun)
+        self.ayir_oy_btn.clicked.connect(self.ayir_oy)
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.kiritish)
+        layout.addWidget(self.natija)
+        layout.addWidget(self.kun_btn)
+        layout.addWidget(self.qush_10_kun_btn)
+        layout.addWidget(self.qush_oy_btn)
+        layout.addWidget(self.qush_yil_btn)
+        layout.addWidget(self.ayir_2_kun_btn)
+        layout.addWidget(self.ayir_oy_btn)
+
+        self.setLayout(layout)
+    def ol_sana(self):
+        sana_matn = self.kiritish.text()
+        return QDate.fromString(sana_matn, 'yyyy-MM-dd')
+
+    def sana_kuni(self):
+        sana = self.ol_sana()
+        self.natija.setText(f'Kun: {sana.day()}')
+
+    def qush_10_kun(self):
+        sana = self.ol_sana().addDays(10)
+        self.natija.setText(f'10 kun keyin: {sana.toString("yyyy-MM-dd")}')
+
+    def qush_oy(self):
+        sana = self.ol_sana().addMonths(1)
+        self.natija.setText(f'1 oy keyin: {sana.toString("yyyy-MM-dd")}')
+
+    def qush_yil(self):
+        sana = self.ol_sana().addYears(1)
+        self.natija.setText(f'1 yil keyin: {sana.toString("yyyy-MM-dd")}')
+
+    def ayir_2_kun(self):
+        sana = self.ol_sana().addDays(-2)
+        self.natija.setText(f'2 kun oldin: {sana.toString("yyyy-MM-dd")}')
+
+    def ayir_oy(self):
+        sana = self.ol_sana().addMonths(-1)
+        self.natija.setText(f'1 oy oldin: {sana.toString("yyyy-MM-dd")}')
+
+app = QApplication(sys.argv)
+window = SanaIlovasi()
+window.show()
+sys.exit(app.exec_())
 
